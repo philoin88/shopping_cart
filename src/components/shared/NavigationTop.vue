@@ -2,20 +2,20 @@
   <div>
     <v-navigation-drawer v-model="drawer" app temporary>
       <v-list>
-        <v-list-title-content>
-          <v-list-title-title>Menu</v-list-title-title>
-        </v-list-title-content>
+        <v-list-item-content>
+          <v-list-item-title>Menu</v-list-item-title>
+        </v-list-item-content>
         <v-divider></v-divider>
 
         <template v-for="(item, index) in items">
-          <v-list-tile :key="index" :href="item.href">
-            <v-list-tile-action>
+          <v-list-item :key="index" :href="item.href">
+            <v-list-item-action>
               <v-icon light v-html="item.icon"></v-icon>
-            </v-list-tile-action>
-            <v-list-tile-action>
-              <v-list-title-title>{{ item.title }}</v-list-title-title>
-            </v-list-tile-action>
-          </v-list-tile>
+            </v-list-item-action>
+            <v-list-item-action>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-action>
+          </v-list-item>
         </template>
       </v-list>
     </v-navigation-drawer>
@@ -25,27 +25,28 @@
       <v-toolbar-title>Shopping Cart</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-toolbar-item>
-        <v-btn text>Products</v-btn>
-        <v-btn text>
+      <v-toolbar-items>
+        <v-btn text router to="/">Products</v-btn>
+        <v-btn text router to="/basket">
           <v-badge left color="green">
             <span slot="badge">5</span>
             <v-icon>shopping_cart</v-icon>Basket
           </v-badge>
         </v-btn>
-      </v-toolbar-item>
+      </v-toolbar-items>
     </v-app-bar>
   </div>
 </template>
 
 <script>
 export default {
+  name: "NavigationTop",
   data: () => ({
     drawer: false,
     items: [
       {
         icon: "perm_identity",
-        href: "#",
+        href: "/myaccount",
         title: "Account"
       }
     ]

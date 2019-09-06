@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: 'Footer',
   data: () => ({
     icons: [
       'fab fa-facebook',

@@ -1,142 +1,114 @@
 <template>
   <v-container>
-    <v-layout
-      text-center
-      wrap
-    >
-      <v-flex xs12>
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        ></v-img>
-      </v-flex>
+    <h2 class="display-1 mb-4">Hot Products Showing</h2>
 
-      <v-flex mb-4>
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a href="https://community.vuetifyjs.com" target="_blank">Discord Community</a>
-        </p>
-      </v-flex>
+    <v-layout row wrap>
+      <template v-for="(product, index) in products">
+        <v-flex xs2 pa-1 :key="index">
+          <v-hover>
+            <v-card
+              slot-scope="{hover}"
+              class="mx-auto"
+              color="grey lighten-4"
+              max-width="600"
+              height="350"
+            >
+              <v-img :src="product.src" :aspect-ratio="16/9">
+                <v-expand-transition>
+                  <div
+                    class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 black--text"
+                    style="height: 100%"
+                    v-if="hover"
+                  >{{ product.price }}</div>
+                </v-expand-transition>
+              </v-img>
+              <v-card-text class="pt-4" style="position: relative;">
+                <v-btn absolute color="orange" class="white--text" fab medium right top>
+                  <v-icon>shopping_cart</v-icon>
+                </v-btn>
+                <div class="font-weight-light grey--text title mb-2">{{ product.category }}</div>
 
-      <v-flex
-        mb-5
-        xs12
-      >
-        <h2 class="headline font-weight-bold mb-3">What's next?</h2>
+                <h3 class="diplay-1 font-weight-light orange--text mb-2">{{ product.title }}</h3>
 
-        <v-layout justify-center>
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-layout>
-      </v-flex>
-
-      <v-flex
-        xs12
-        mb-5
-      >
-        <h2 class="headline font-weight-bold mb-3">Important Links</h2>
-
-        <v-layout justify-center>
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-layout>
-      </v-flex>
-
-      <v-flex
-        xs12
-        mb-5
-      >
-        <h2 class="headline font-weight-bold mb-3">Ecosystem</h2>
-
-        <v-layout justify-center>
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-layout>
-      </v-flex>
+                <div class="font-weight-light mb-2">{{ product.description }}</div>
+              </v-card-text>
+            </v-card>
+          </v-hover>
+        </v-flex>
+      </template>
     </v-layout>
   </v-container>
 </template>
 
 <script>
 export default {
+  name: "HelloWorld",
   data: () => ({
-    ecosystem: [
+    products: [
       {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader',
+        price: 14.99,
+        src: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
+        category: "For the perfect meal",
+        title: "QW Coooking utensils",
+        description:
+          "Our vintage kitchen utensils delight any chef. Made of bamboo by hand."
       },
       {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify',
+        price: 24.99,
+        src: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
+        category: "For the perfect meal",
+        title: "QW Coooking utensils",
+        description:
+          "Our vintage kitchen utensils delight any chef. Made of bamboo by hand."
       },
       {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify',
-      },
-    ],
-    importantLinks: [
-      {
-        text: 'Documentation',
-        href: 'https://vuetifyjs.com',
+        price: 34.99,
+        src: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
+        category: "For the perfect meal",
+        title: "QW Coooking utensils",
+        description:
+          "Our vintage kitchen utensils delight any chef. Made of bamboo by hand."
       },
       {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com',
+        price: 44.99,
+        src: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
+        category: "For the perfect meal",
+        title: "QW Coooking utensils",
+        description:
+          "Our vintage kitchen utensils delight any chef. Made of bamboo by hand."
       },
       {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify',
+        price: 54.99,
+        src: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
+        category: "For the perfect meal",
+        title: "QW Coooking utensils",
+        description:
+          "Our vintage kitchen utensils delight any chef. Made of bamboo by hand."
       },
       {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs',
-      },
-      {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify',
-      },
-    ],
-    whatsNext: [
-      {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com/components/api-explorer',
-      },
-      {
-        text: 'Select a layout',
-        href: 'https://vuetifyjs.com/layout/pre-defined',
-      },
-      {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-      },
-    ],
-  }),
+        price: 64.99,
+        src: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
+        category: "For the perfect meal",
+        title: "QW Coooking utensils",
+        description:
+          "Our vintage kitchen utensils delight any chef. Made of bamboo by hand."
+      }
+    ]
+  })
 };
 </script>
+
+<style lang="scss">
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+}
+
+.v-card h3.display-1 {
+  font-size: 24px !important;
+}
+</style>
